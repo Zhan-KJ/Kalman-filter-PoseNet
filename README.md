@@ -1,3 +1,5 @@
+# **中文**
+
 # Kalman filter-PoseNet
 此專案的目標是以使用Kalman filter對PoseNet進行影像濾波，是應用於Coral Edge Edge TPU上的PoseNet模型，並呈現出應用於網路攝影機的結果。此專案僅限於單人使用。
 
@@ -5,3 +7,29 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
 
 # Getting Started
 下載google-coral內提供的[PoseNet](https://github.com/google-coral/project-posenet.git)專案
+
+# pose_camera.py
+以模型內的pose_camera.py為基底，來實現影像濾波
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# **英文**
+
+# Kalman filter-PoseNet
+
+# Getting Started
+
+# pose_camera.py
