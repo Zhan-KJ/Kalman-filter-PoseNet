@@ -10,9 +10,6 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
   * 此專案開發和測試是在Linux上使用Python完成的
   * 下載google-coral內提供的[PoseNet](https://github.com/google-coral/project-posenet.git)專案
 
-## pose_camera.py
-以模型內的pose_camera.py為基底，來實現影像濾波
-
 ## Kalman filter
 
 ### 優點
@@ -21,7 +18,7 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
  3. 適合應用於嵌入式系統
  4. 實現容易，純時域的濾波器
 
-### 運作原理
+### 原理
   * 卡爾曼濾波器的主要步驟有兩個：
    1. 預估:濾波器使用上一狀態的估計，做出對當前狀態的估計。
    2. 更新:濾波器利用對當前狀態的觀測值優化在預測階段獲得的預測值，以獲得一個更精確的新估計值。
@@ -54,6 +51,14 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
  𝑃_𝑘=（１−k_k）P_(k−1)	
 
  ```
+## 運行方法
+
+### 主要運行方法為下列所述：
+
+* 將RGB圖像經過卷積神經網路運算。以下列的範例所示，
+* 將各個關節座標以不同顏色做區分，讓使用者更直觀的做辨識
+* 
+
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/image1.gif?raw=true)
 
 
