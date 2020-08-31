@@ -9,12 +9,46 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
   * 需要在具有Python3.x環境下編譯
   * 此專案開發和測試是在Linux上使用Python完成
   * 使用google-coral內提供的[PoseNet](https://github.com/google-coral/project-posenet.git)專案
-### 使用套件
+
+### 環境
+
+ 安裝OpenCV套件
+```
+sudo apt-get install build-essential cmake unzip pkg-config
+sudo apt-get install libjpeg-dev libpng-dev libtiff-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libgtk-3-dev
+sudo apt-get install libatlas-base-dev gfortran
+sudo apt-get install python3-dev
 
 ```
+ 安裝Git:
 
 ```
-
+sudo apt-get update
+sudo apt-get install git
+```
+ 1. 從此存儲庫下載預構建的庫。
+ ```
+   git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
+ ```
+ 2. 將cv2.so文件複製到/usr/local/lib/python3.7/dist-packages/中
+ ```
+   cp opencv4.1.1-for-google-coral/cv2.so /usr/local/lib/python3.7/dist-packages/cv2.so 
+ ```
+ 3. 將其他.so文件複製到/ usr / local / lib /中
+ ```
+   sudo cp -r opencv4.1.1-for-google-coral/libraries/. /usr/local/lib 
+ ```
+ 4. 檢查是否有效
+ ```
+ python3
+  >>> import cv2
+  >>> cv2.__version__
+  '4.1.1'
+ ```
+ 
 ## Kalman filter
 
 ### 優點
