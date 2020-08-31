@@ -21,7 +21,6 @@ sudo apt-get install libxvidcore-dev libx264-dev
 sudo apt-get install libgtk-3-dev
 sudo apt-get install libatlas-base-dev gfortran
 sudo apt-get install python3-dev
-
 ```
  安裝Git:
 
