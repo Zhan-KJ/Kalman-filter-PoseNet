@@ -30,22 +30,22 @@ sudo apt-get install git
 ```
  1. 從此存儲庫下載預構建的庫。
  ```
-   git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
+ git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
  ```
  2. 將cv2.so文件複製到/usr/local/lib/python3.7/dist-packages/中
  ```
-   cp opencv4.1.1-for-google-coral/cv2.so /usr/local/lib/python3.7/dist-packages/cv2.so 
+cp opencv4.1.1-for-google-coral/cv2.so /usr/local/lib/python3.7/dist-packages/cv2.so 
  ```
  3. 將其他.so文件複製到/ usr / local / lib /中
  ```
-   sudo cp -r opencv4.1.1-for-google-coral/libraries/. /usr/local/lib 
+sudo cp -r opencv4.1.1-for-google-coral/libraries/. /usr/local/lib 
  ```
  4. 檢查是否有效
  ```
- python3
-  >>> import cv2
-  >>> cv2.__version__
-  '4.1.1'
+python3
+ >>> import cv2
+ >>> cv2.__version__
+ '4.1.1'
  ```
  
 ## Kalman filter
