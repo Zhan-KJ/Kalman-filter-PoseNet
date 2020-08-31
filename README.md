@@ -52,7 +52,7 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
 
  ```
  ### 比較
- 進行卡爾曼濾波器進行影像穩定實驗前，需要先測試我們對於此濾波器的認知是否正確，先將卡爾曼濾波器公式套入Excel內，並將我們影像輸出座標輸入其中，我們使用30fps拍攝180秒影片進行濾波測試如下圖所示，我們取中間雜訊較為明顯之區段做顯示， 可以發現確實將雜訊濾除並改善了延遲上的問題。
+ 進行卡爾曼濾波器進行影像穩定實驗前，需要先測試我們對於此濾波器的認知是否正確，先將卡爾曼濾波器公式套入Excel內，並將我們影像輸出座標輸入其中，我們使用30fps拍攝180秒影片進行濾波測試如下圖所示，取中間雜訊較為明顯之區段做顯示， 可以發現確實將雜訊濾除並改善了延遲上的問題。
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/image.png?raw=true)
 
 ## 運行方法
@@ -60,9 +60,13 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
 ### 主要運行方法為下列所述：
 
  1. 將RGB圖像經過卷積神經網路運算。
- 2. 以下列的範例所示，我們將EdgeTPU連接，確認是否能正確顯示各個關節點，再將各個關節座標以不同顏色做區分，讓使用者更直觀的做辨識。由於需比較濾波前後差異，放上濾波測試前後比較，此步驟是在EdgeTPU上運行。
+ 2. 以下列的範例所示，我們將EdgeTPU連接，確認是否能正確顯示各個關節點，再將各個關節座標以不同顏色做區分，讓使用者更直觀的做辨識。
+ 3. 由於需比較濾波前後差異，放上濾波測試前後比較，此步驟是在EdgeTPU上運行。
+ 
+下圖範例為將影像加入關節座標後結果展示。
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_single_screen.gif?raw=true)
 
-可以發現，左圖為為濾波狀態，關節點抖動特別明顯。右圖為將Kalman filter帶入後狀態，可以發現關節點抖動穩定許多。
+下圖範例為濾波前後比較。左側為未濾波狀態，關節點抖動特別明顯，右側為將Kalman filter帶入後狀態，可以發現關節點抖動穩定許多。
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
 
 # **English**
