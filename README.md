@@ -19,7 +19,7 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
  4. 實現容易，純時域的濾波器
 
 ### 原理
-  * 卡爾曼濾波器的主要步驟有兩個：
+  卡爾曼濾波器的主要步驟有兩個：
    1. 預估:濾波器使用上一狀態的估計，做出對當前狀態的估計。
    2. 更新:濾波器利用對當前狀態的觀測值優化在預測階段獲得的預測值，以獲得一個更精確的新估計值。
  ```
@@ -65,11 +65,11 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
    * 再將各個關節座標以不同顏色做區分，讓使用者更直觀辨識
  3. 由於需比較濾波前後差異，放上濾波測試前後比較，此步驟是在EdgeTPU上運行。
  
- * 下圖範例為將影像加入關節座標後結果展示。
+ 下圖範例為將影像加入關節座標後結果展示。
  
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_single_screen.gif?raw=true)
 
- * 下圖範例為濾波前後比較。左側為未濾波狀態，關節點抖動特別明顯，右側為將Kalman filter帶入後狀態，可以發現關節點抖動穩定許多。
+ 下圖範例為濾波前後比較。左側為未濾波狀態，關節點抖動特別明顯，右側為將Kalman filter帶入後狀態，可以發現關節點抖動穩定許多。
 
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
 
