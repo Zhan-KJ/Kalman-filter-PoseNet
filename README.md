@@ -62,8 +62,8 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
  1. 將RGB圖像經過卷積神經網路運算。
  2. 以下列的範例所示，我們將EdgeTPU連接，確認是否能正確顯示各個關節點，再將各個關節座標以不同顏色做區分，讓使用者更直觀的做辨識。由於需比較濾波前後差異，放上濾波測試前後比較，此步驟是在EdgeTPU上運行。
 
+可以發現，左圖為為濾波狀態，關節點抖動特別明顯。右圖為將Kalman filter帶入後狀態，可以發現關節點抖動穩定許多。
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
-
 
 # **English**
 
