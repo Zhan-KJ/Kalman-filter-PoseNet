@@ -28,6 +28,8 @@ sudo apt-get install python3-dev
 sudo apt-get update
 sudo apt-get install git
 ```
+### 檢查OpenCV是否有效
+
  1. 從此存儲庫下載預構建的庫。
  ```
  git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
@@ -48,7 +50,7 @@ python3
  '4.1.1'
  ```
  
-## Kalman filter
+## Kalman filter 介紹
 
 ### 優點
  1. 占用記憶體空間少
