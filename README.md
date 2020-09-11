@@ -10,7 +10,7 @@ PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身�
   * 此專案開發和測試是在Linux上使用Python完成
   * 使用google-coral內提供的[PoseNet](https://github.com/google-coral/project-posenet.git)專案
 
-### 環境架設
+### 下載OpenCV
 
  安裝OpenCV套件
 ```
@@ -116,7 +116,7 @@ python3
 # **English**
 
 ## Kalman filter-PoseNet
-瓜
+
 ## Getting Started
 
-## Kalman filter
+###Download OpenCV
