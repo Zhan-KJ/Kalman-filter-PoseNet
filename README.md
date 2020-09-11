@@ -1,16 +1,16 @@
 # **中文**
 
 ## Kalman filter-PoseNet
-此專案的目標是以使用Kalman filter對PoseNet進行影像濾波，是應用於Coral Edge Edge TPU上的PoseNet模型，並呈現出應用於網路攝影機的結果。此專案僅限於單人使用。
+此專案在Coral Edge TPU上實現PoseNet模型，並透過卡爾曼濾波器對PoseNet模型輸出進行濾波，達到影像穩定效果，此專案僅限於單人使用。
 
-PoesNet是一種視覺定位模型，它可以透過一張圖像可以定位身體位置訊息特性是速度較快但精準度不高，所以需要透過濾波測試修正其誤差值，本文以降低雜訊為目地，先將關節座標找出，找出座標點後將座標資料帶入卡爾曼濾波器，進行影像後處理，保留演算法計算出的合理座標。
+PoesNet是一種視覺定位模型，透過一張圖像可以定位身體位置訊息特性是速度較快但精準度不高，所以需要透過濾波測試修正其誤差值，本文以降低雜訊為目地，先將關節座標找出，找出座標點後將座標資料帶入卡爾曼濾波器，進行影像後處理。
 
 ## 入門
   * 需要在具有Python3.x環境下編譯
   * 此專案開發和測試是在Linux上使用Python完成
   * 使用google-coral內提供的[PoseNet](https://github.com/google-coral/project-posenet.git)專案
 
-### 環境架設
+### 下載OpenCV
 
  安裝OpenCV套件
 ```
@@ -30,7 +30,7 @@ sudo apt-get install git
 ```
 ### 檢查OpenCV是否有效
 
- 1. 從此存儲庫下載預構建的庫。
+ 1. 下載OpenCV Library
  ```
  git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
  ```
@@ -116,7 +116,105 @@ python3
 # **English**
 
 ## Kalman filter-PoseNet
+The project implemented the PoseNet model on the Coral Edge TPU, and filter the PoseNet model output through the Kalman filter, achieve video stabilization .This project can only be operated by one person.
 
-## Getting Started
+PoesNet is a visual positioning model, the position of the body can be located through the image. Information function is faster but not accurate, so we need to correct the error value through filtering test, this article aims to reduce noise. First find out the joint coordinates ,after finding the coordinate point, bring the coordinate data into the Kalman filter for image post-processing.
+## Getting Started 
+  * Need to be compiled in a Python 3.x environment.
+  * The development and testing of this project is done using Python on Linux.
+  * Use the provided in google-coral[PoseNet](https://github.com/google-coral/project-posenet.git) Project.
+### Download OpenCV
+ Install OpenCV package
+```
+sudo apt-get install build-essential cmake unzip pkg-config
+sudo apt-get install libjpeg-dev libpng-dev libtiff-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libgtk-3-dev
+sudo apt-get install libatlas-base-dev gfortran
+sudo apt-get install python3-dev
+```
+Install Git:
+```
+sudo apt-get update
+sudo apt-get install git
+```
+## Check if OpenCV is correct
+ 1. Download OpenCV Library
+ ```
+ git clone https://github.com/pjalusic/opencv4.1.1-for-google-coral.git
+ ```
+ 2. Copy the cv2.so file to /usr/local/lib/python3.7/dist-packages/
+ ```
+cp opencv4.1.1-for-google-coral/cv2.so /usr/local/lib/python3.7/dist-packages/cv2.so 
+ ```
+ 3. Copy other .so files into /usr/local/lib/
+ ```
+sudo cp -r opencv4.1.1-for-google-coral/libraries/. /usr/local/lib 
+ ```
+ 4. Check if it is successful
+ ```
+python3
+ >>> import cv2
+ >>> cv2.__version__
+ '4.1.1'
+ ```
+## Introduction to Kalman Filter
 
-## Kalman filter
+### Advantage
+ 1. Occupies a small amount of memory
+ 2. Suitable for continuously changing scenes
+ 3. Suitable for embedded systems
+ 4. Easy to implement pure time domain filter
+### Principle
+  The Kalman filter has two main steps：
+   1. Estimate: The filter uses the estimate of the previous state to estimate the current state.
+   2. Update: The filter uses the observed value of the current state to optimize the predicted value obtained in the prediction phase, thereby obtaining a more accurate new         estimate.
+ ```
+ Time update equation:           
+ 
+    x_k=A_(x_k−1)+B_uk+Q 
+    
+    z_k=Hx_k+R	
+ ```   
+ ```   
+ State update equation:
+ 
+    x_k=x_k−1+Q
+    
+    z_k=x_k+R				
+    
+    k_k=P_(k−1)/(P_k+R)
+ ```
+ A, B, and H are all system parameters, which are all matrices in the multi-dimensional reality. In a simple scenario, if they are set to a constant 1, the formula will be simplified to：
+ ```
+ x_k=x_k−1+Q					
+ 
+ z_k=x_k+R					
+ 
+ k_k=P_(k−1)/(P_k+R)	
+ 
+ x_k=x_(k−1)+k_k (z_k−x_(k−1))			
+ 
+ 𝑃_𝑘=（１−k_k）P_(k−1)	
+
+ ```
+### Compare
+Before performing the Kalman filter for image stabilization experiments, we need to test whether our perception of this filter is correct, put the Kalman filter formula into Excel first, Introduce our image output coordinates into it, we use 30fps to shoot 180 seconds of film for filtering test, as shown in the figure below, take the slightly obvious segments of the intermediate noise for display, and you can find that the noise is indeed filtered out and the delay problem is improved.
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/image.png?raw=true)
+## Operation method
+
+### The main operation methods are as follows
+ 1. RGB image through convolutional neural network operation.
+ 2. Take the following example as an example, we will connect EdgeTPU to WebCam.
+   * Confirm whether each joint point can be displayed correctly.
+   * Then the coordinates of each joint are distinguished by different colors, allowing users to more intuitively recognize.
+ 3. Since you need to compare the difference before and after filtering, compare the test before and after filtering, this step runs on EdgeTPU.
+ 
+ The following example shows the result after adding the image to the joint coordinates.
+ 
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_single_screen.gif?raw=true)
+
+
+The figure below shows the comparison before and after filtering.Unfiltered state on the left ,red dot jitter is particularly obvious, on the right is the state after introducing the Kalman filter, blue dot is very stable.
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
