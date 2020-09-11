@@ -216,5 +216,5 @@ Before performing the Kalman filter for image stabilization experiments, we need
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_single_screen.gif?raw=true)
 
 
-The figure below shows the comparison before and after filtering.Unfiltered state on the left ,
+The figure below shows the comparison before and after filtering.Unfiltered state on the left ,red dot jitter is particularly obvious, on the right is the state after introducing the Kalman filter, blue dot is very stable.
 ![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
