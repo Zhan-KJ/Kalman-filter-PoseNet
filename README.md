@@ -160,11 +160,13 @@ python3
  '4.1.1'
  ```
 ## Introduction to Kalman Filter
+
+### Advantage
  1. Occupies a small amount of memory
  2. Suitable for continuously changing scenes
  3. Suitable for embedded systems
  4. Easy to implement pure time domain filter
-### Advantage
+### Principle
   The Kalman filter has two main steps：
    1. Estimate: The filter uses the estimate of the previous state to estimate the current state.
    2. Update: The filter uses the observed value of the current state to optimize the predicted value obtained in the prediction phase, thereby obtaining a more accurate new         estimate.
@@ -197,10 +199,22 @@ python3
  𝑃_𝑘=（１−k_k）P_(k−1)	
 
  ```
-### Principle
-
 ### Compare
-
+Before performing the Kalman filter for image stabilization experiments, we need to test whether our perception of this filter is correct, put the Kalman filter formula into Excel first, Introduce our image output coordinates into it, we use 30fps to shoot 180 seconds of film for filtering test, as shown in the figure below, take the slightly obvious segments of the intermediate noise for display, and you can find that the noise is indeed filtered out and the delay problem is improved.
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/image.png?raw=true)
 ## Operation method
 
 ### The main operation methods are as follows
+ 1. RGB image through convolutional neural network operation.
+ 2. Take the following example as an example, we will connect EdgeTPU to WebCam.
+   * Confirm whether each joint point can be displayed correctly.
+   * Then the coordinates of each joint are distinguished by different colors, allowing users to more intuitively recognize.
+ 3. Since you need to compare the difference before and after filtering, compare the test before and after filtering, this step runs on EdgeTPU.
+ 
+ The following example shows the result after adding the image to the joint coordinates.
+ 
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_single_screen.gif?raw=true)
+
+
+The figure below shows the comparison before and after filtering.Unfiltered state on the left ,
+![image](https://github.com/Zhan-KJ/Kalman-filter-PoseNet/blob/master/image/output_contrast_screen.gif?raw=true)
